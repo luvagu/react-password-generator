@@ -20,7 +20,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-	background-color: slateblue;
+	background-color: rgba(105, 90, 205, 0.9);
   color: white;
 	border: 2px solid rgb(36, 27, 94);
 	border-radius: 2rem;
@@ -29,20 +29,32 @@ body {
 
 .title {
 	margin: 0;
+	text-transform: uppercase;
+	color: gold;
 }
 
 .display-password {
   display: flex;
 	justify-content: center;
 	width: 350px;
-	padding: 1rem;
+	padding: 1rem 1.5rem;
 	word-break: break-all;
 	/* font-size: 1rem; */
 	color: rgb(36, 27, 94);
 	background-color: lightsteelblue;
 	border: 1px solid rgb(36, 27, 94);
 	border-radius: 1rem;
+	/* cursor: pointer; */
+	position: relative;
 }
+
+/* .display-password::before {
+	content: '📋';
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 1rem;
+} */
 
 .form-fields{
 	display: grid;
@@ -68,12 +80,13 @@ label {
 	cursor: pointer;
 	padding: .5rem 1rem;
 	font-weight: bold;
+	text-transform: uppercase;
 	color: rgb(36, 27, 94);
 	border: 1px solid rgb(36, 27, 94);
 	border-radius: 1rem;
-	background-color: transparent;
+	background-color: rgba(176, 196, 222, 0.5);
 }
 
 .btn:hover {
-	background-color: rgba(176, 196, 222, 0.7);
+	background-color: rgba(176, 196, 222, 0.9);
 }
