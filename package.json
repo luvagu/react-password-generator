@@ -1,5 +1,6 @@
 {
   "name": "react-password-generator",
+  "homepage": "https://luvagu.github.io/react-password-generator/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
