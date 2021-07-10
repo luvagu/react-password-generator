@@ -88,10 +88,11 @@ function App() {
 			<h1 className='title'>Password Generator</h1>
 			<h3 className='display-password'>{dysplayPassword}</h3>
 			<form className='form-fields' onSubmit={handleSubmit}>
-				<label htmlFor=''>Number of Characters:</label>
+				<label htmlFor='rangeNumber'>Number of Characters:</label>
 				<div className='input-range-number'>
 					<input
 						type='range'
+						id='rangeNumber'
 						min='1'
 						max='50'
 						value={numOfChars}
@@ -99,6 +100,7 @@ function App() {
 					/>
 					<input
 						type='number'
+						id='rangeNumber'
 						min='1'
 						max='50'
 						value={numOfChars}
