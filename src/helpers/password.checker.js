@@ -13,6 +13,7 @@ export default function checkPasswordStrength(password) {
 
 function strenghtCalculator(weaknesses) {
 	let strength = 100
+	
 	weaknesses.forEach(weakness => (strength -= weakness))
 
 	if (strength === 100) {
