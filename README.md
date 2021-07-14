@@ -6,6 +6,7 @@
 - With uppercase Letters
 - With numbers
 - With symbols
+- Includes password strength meter
 
 Try the demo at: https://luvagu.github.io/react-password-generator/
 
