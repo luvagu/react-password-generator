@@ -52,7 +52,7 @@ function strenghtCalculator(weaknesses) {
 
 	return {
 		message: 'Very Weak',
-		strength,
+		strength: strength < 0 ? 0 : strength,
 	}
 }
 
