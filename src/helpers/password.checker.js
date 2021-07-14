@@ -15,6 +15,13 @@ function strenghtCalculator(weaknesses) {
 	let strength = 100
 	weaknesses.forEach(weakness => (strength -= weakness))
 
+	if (strength === 100) {
+		return {
+			message: '💪 Probably Unhackable',
+			strength,
+		}
+	}
+
 	if (strength >= 80) {
 		return {
 			message: 'Very Strong',
