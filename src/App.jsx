@@ -1,59 +1,17 @@
-import { useState } from 'react'
-
-const generatePassword = (
-	numOfChars = 8,
-	includeUppercase = false,
-	includeNumbers = false,
-	includeSymbols = false
-) => {
-	// ASCII Character Codes Arrays
-	// source: https://www.petefreitag.com/cheatsheets/ascii-codes/
-	const getAsciiCharacters = (from, to) => {
-		const codes = []
-		for (let i = from; i <= to; i++) {
-			codes.push(i)
-		}
-		return codes
-	}
-
-	const LowerCaseCodes = getAsciiCharacters(97, 122)
-	const UpperCaseCodes = getAsciiCharacters(65, 90)
-	const NumbersCodes = getAsciiCharacters(48, 57)
-	const SymbolsCodes = [
-		...getAsciiCharacters(33, 47),
-		...getAsciiCharacters(58, 64),
-		...getAsciiCharacters(91, 96),
-		...getAsciiCharacters(123, 126),
-	]
-
-	let passwordCharCodes = LowerCaseCodes
-
-	if (includeUppercase)
-		passwordCharCodes = [...passwordCharCodes, ...UpperCaseCodes]
-	if (includeNumbers)
-		passwordCharCodes = [...passwordCharCodes, ...NumbersCodes]
-	if (includeSymbols)
-		passwordCharCodes = [...passwordCharCodes, ...SymbolsCodes]
-
-	const password = []
-
-	for (let i = 0; i < numOfChars; i++) {
-		password.push(
-			String.fromCharCode(
-				passwordCharCodes[Math.floor(Math.random() * passwordCharCodes.length)]
-			)
-		)
-	}
-
-	return password.join('')
-}
+import { useEffect, useRef, useState } from 'react'
+import { checkPasswordStrength, generatePassword } from './helpers'
 
 function App() {
-	const [numOfChars, setNumOfChars] = useState(8)
-	const [dysplayPassword, setDysplayPassword] = useState('password')
+	const [numOfChars, setNumOfChars] = useState(10)
+	const [displayPassword, setDisplayPassword] = useState('password')
 	const [options, setOptions] = useState({})
 	const [isCopied, setIsCopied] = useState(false)
 	const [isGenerated, setIsGenerated] = useState(false)
+	const [paswordStrength, setPaswordStrength] = useState(
+		checkPasswordStrength(displayPassword)
+	)
+
+	const passwordMeter = useRef()
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -68,7 +26,7 @@ function App() {
 			options.symbols
 		)
 
-		setDysplayPassword(password)
+		setDisplayPassword(password)
 	}
 
 	const handleChage = e => {
@@ -79,14 +37,32 @@ function App() {
 	}
 
 	const copyToClipboard = () => {
-		navigator.clipboard.writeText(dysplayPassword)
+		navigator.clipboard.writeText(displayPassword)
 		setIsCopied(true)
 	}
+
+	useEffect(() => {
+		passwordMeter.current.style.setProperty(
+			'--strength',
+			paswordStrength.strength
+		)
+	}, [paswordStrength])
+
+	useEffect(() => {
+		setPaswordStrength(checkPasswordStrength(displayPassword))
+	}, [displayPassword])
 
 	return (
 		<div className='container'>
 			<h1 className='title'>Password Generator</h1>
-			<h3 className='display-password'>{dysplayPassword}</h3>
+			<h3 className='display-password'>{displayPassword}</h3>
+			{paswordStrength && (
+				<div ref={passwordMeter} className='password-meter'>
+					<span>
+						{paswordStrength.message} ({paswordStrength.strength}/100)
+					</span>
+				</div>
+			)}
 			<form className='form-fields' onSubmit={handleSubmit}>
 				<label htmlFor='rangeNumber'>Number of Characters:</label>
 				<div className='input-range-number'>
