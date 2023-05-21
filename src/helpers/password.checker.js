@@ -18,7 +18,7 @@ function strenghtCalculator(weaknesses) {
 
 	if (strength === 100) {
 		return {
-			message: '💪 Probably Unhackable',
+			message: '💪 Probably Unbreakable',
 			strength,
 		}
 	}
