@@ -5,7 +5,7 @@ export default function checkPasswordStrength(password) {
 		checkLowercaseCharacters(password),
 		checkUppercaseCharacters(password),
 		checkNumberCharacters(password),
-		checkSymbolCharacters(password),
+		checkSpecialCharacters(password),
 		checkRepeatCharacters(password)
 	)
 	return strenghtCalculator(weaknesses)
@@ -13,7 +13,7 @@ export default function checkPasswordStrength(password) {
 
 function strenghtCalculator(weaknesses) {
 	let strength = 100
-	
+
 	weaknesses.forEach(weakness => (strength -= weakness))
 
 	if (strength === 100) {
@@ -85,9 +85,9 @@ function checkNumberCharacters(password) {
 	return checkMinCharacterType(password, /[0-9]/g)
 }
 
-// some symbol characters
-function checkSymbolCharacters(password) {
-	return checkMinCharacterType(password, /[^a-zA-Z0-9\s]/g)
+// some special characters
+function checkSpecialCharacters(password) {
+	return checkMinCharacterType(password, /[\W]/g)
 }
 
 function checkMinCharacterType(password, regex) {

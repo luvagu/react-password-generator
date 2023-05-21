@@ -2,7 +2,7 @@ export default function generatePassword(
 	numOfChars = 8,
 	includeUppercase = false,
 	includeNumbers = false,
-	includeSymbols = false
+	includeSpecial = false
 ) {
 	// ASCII Character Codes Arrays
 	// source: https://www.petefreitag.com/cheatsheets/ascii-codes/
@@ -17,12 +17,7 @@ export default function generatePassword(
 	const LowerCaseCodes = getAsciiCharacters(97, 122)
 	const UpperCaseCodes = getAsciiCharacters(65, 90)
 	const NumbersCodes = getAsciiCharacters(48, 57)
-	const SymbolsCodes = [
-		...getAsciiCharacters(33, 47),
-		...getAsciiCharacters(58, 64),
-		...getAsciiCharacters(91, 96),
-		...getAsciiCharacters(123, 126),
-	]
+	const SpecialCharacters = [35, 37, 43, 58, 61, 63, 64] // #, %, +, :, =, ?, @
 
 	let passwordCharCodes = LowerCaseCodes
 
@@ -30,8 +25,8 @@ export default function generatePassword(
 		passwordCharCodes = [...passwordCharCodes, ...UpperCaseCodes]
 	if (includeNumbers)
 		passwordCharCodes = [...passwordCharCodes, ...NumbersCodes]
-	if (includeSymbols)
-		passwordCharCodes = [...passwordCharCodes, ...SymbolsCodes]
+	if (includeSpecial)
+		passwordCharCodes = [...passwordCharCodes, ...SpecialCharacters]
 
 	const password = []
 

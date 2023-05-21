@@ -23,7 +23,7 @@ function App() {
 			numOfChars,
 			options.uppercase,
 			options.numbers,
-			options.symbols
+			options.special
 		)
 
 		setDisplayPassword(password)
@@ -84,12 +84,12 @@ function App() {
 						className='number-input'
 					/>
 				</div>
-				<label htmlFor='uppercase'>Include Uppercase</label>
+				<label htmlFor='uppercase'>Include Uppercase (A-Z)</label>
 				<input type='checkbox' id='uppercase' onChange={handleChage} />
-				<label htmlFor='numbers'>Include Numbers</label>
+				<label htmlFor='numbers'>Include Numbers (0-9)</label>
 				<input type='checkbox' id='numbers' onChange={handleChage} />
-				<label htmlFor='symbols'>Include Symbols</label>
-				<input type='checkbox' id='symbols' onChange={handleChage} />
+				<label htmlFor='special'>Include Special Characters (#%+:=?@)</label>
+				<input type='checkbox' id='special' onChange={handleChage} />
 				<button type='submit' className='btn'>
 					Generate Secure Password 🔒
 				</button>
